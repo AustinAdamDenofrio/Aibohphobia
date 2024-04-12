@@ -51,12 +51,22 @@ function checkForPalindrome(normalizedString){
 function displayResults(checkedResults, originalInputString) {
     
     if (checkedResults == true) {
-        document.getElementById('alert').classList.remove('invisible');
-        document.getElementById('msg').innerHTML = `"${originalInputString}" is a Palindrome`;
+
+        swal.fire({
+            background: "#dde6f4",
+            title: 'Good Job!',
+            backdrop: false,
+            text: `"${originalInputString}" is a Palindrome`
+          });
+
     } else {
-        document.getElementById('alert').classList.remove('invisible');
-        document.getElementById('msg').innerHTML = `"${originalInputString}" is not a Palindrome`;
-    }
- 
+        swal.fire({
+            icon:'error',
+            background: "#f8d8db",
+            title: 'Oops!',
+            backdrop: false,
+            text: `"${originalInputString}" is NOT a Palindrome`
+          });
+    } 
 }
 

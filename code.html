@@ -66,29 +66,99 @@
             <div class="col-12 col-lg-8">
                 <pre class="line-numbers">
                     <code class="language-js">
-                        function displayMessage() {
-                            let inputBox = document.getElementById('message');
-                            let message = inputBox.value;
+                        // User will use an imput to call this function and the input value will be check to see if the input 
+                        // is a palindrome, then inform the user of the findings.
+                        function getValues() {
                         
-                            Swal.fire(
-                                {
-                                    title: "*APP Name*",
-                                    text: message,
-                                    icon: "success",
-                                    backdrop: false                            
-                                }
-                            );                                
+                            // Get the values from HTML and stage it for use by other functions
+                            let originalInputString = document.getElementById('originalInputString').value;
+                            
+                            // create a var and lowercase and replace all chars that are ^... with nothing. removing all char except the ones i expect
+                            normalizedString = originalInputString.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+                        
+                            // pass the normalized string to be reversed and validated if its a palindrome
+                            let checkedResults = checkForPalindrome(normalizedString);
+                        
+                            // Pass bool results for is a palindrome checker and the un-normalized input from html
+                            displayResults(checkedResults, originalInputString);
+                        }
+                        
+                        // is the value passed in a palindrome?
+                        // Step 1: Reverse the string
+                        // Step 2: Compare reversed string against original to validate they match
+                        // Step 3: Check for error cases
+                        // Step 4: Return if the value was a palindrome or not.
+                        
+                        function checkForPalindrome(normalizedString){
+                            // var for storing the input string value in reverse
+                            let reversedString = '';
+                        
+                            // var for storing true/false for if the input is a palindrome 
+                            let isValidPalindrome = '';
+                        
+                        
+                            // make a for loop that reverses the string
+                            for (let i = normalizedString.length-1;i >= 0;i--) {
+                                reversedString += normalizedString[i];
+                            }
+                        
+                            // Validate the results against the normalized string and check against empty strings
+                            if (normalizedString == reversedString && normalizedString != "") {
+                                isValidPalindrome = true;         
+                            } else {
+                                isValidPalindrome = false;                
+                            }
+                            return isValidPalindrome;
+                        }
+                        
+                        
+                        
+                        function displayResults(checkedResults, originalInputString) {
+                            
+                            if (checkedResults == true) {
+                        
+                                swal.fire({
+                                    background: "#dde6f4",
+                                    title: 'Good Job!',
+                                    backdrop: false,
+                                    text: `"${originalInputString}" is a Palindrome`
+                                  });
+                        
+                            } else {
+                                swal.fire({
+                                    icon:'error',
+                                    background: "#f8d8db",
+                                    title: 'Oops!',
+                                    backdrop: false,
+                                    text: `"${originalInputString}" is NOT a Palindrome`
+                                  });
+                            } 
                         }
                     </code>
                 </pre>
             </div>
             <!-- The Code's Explination -->
             <div class="col-12 col-lg-4">
-                <p>The code is structured in one function</p>
-                <h5><code>displayMessage()</code></h5>
+                <p>The code is structured into 3 functions all initiated by the entry point:</p>
+                <h5><code>function getValues</code></h5>
                 <p>
-                    The <code>displayMessage</code> function takes the 
-                    value from the input and displays it as a sweet alert
+                    The <code>getValues</code> function takes the 
+                    value from the input, parses the data properly for use and uses that value 
+                    to go through a series of functions to check if the value is or is not a 
+                    palindrome.
+                </p>
+                <p>
+                    The <code>checkForPalindrome</code> function takes the normalized value from
+                    <code>getValues</code> and creates a copy of that string, reverses that string,
+                    and then compare that reversed string to the normalized string to confirm it
+                    is a palindrome. Once we have discovered if the input is the a palindrome that 
+                    information is returned back to <code>getValues</code>.
+                </p>
+                <p>
+                    The <code>displayResults</code> function takes all the data we collect and uses
+                    that data to create a message that will display seemlessly to the user. That 
+                    message is a javascript alert decorated using SweetAlert2 
+                    <a href="https://sweetalert2.github.io/" class="text-decoration-none" target="_blank">link</a>.
                 </p>
             </div>
 
@@ -103,7 +173,7 @@
                     &copy; 2024 Austin Denofrio
                 </div>
                 <div class="col text-center">
-                    <img src="/img/signature_dark.svg" height="30" alt="Logo" />
+                    <a href="https://denofrio-fullstack-developer.netlify.app/" target="_blank"><img src="/img/signature_dark.svg" height="30" alt="Logo" /></a>
                 </div>
                 <div class="col text-center text-lg-end">
                     <a class="text-decoration-none" target="_blank" href="https://www.linkedin.com/in/austin-denofrio-286792223/" ><i class="bi bi-linkedin"></i></a>
