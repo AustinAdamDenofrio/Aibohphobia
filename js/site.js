@@ -1,27 +1,52 @@
 function getValues() {
 
-    // input = 'OLYMPUS'
-    let inputString = document.getElementById('inputString').value;
-    let stringResult = reverseString(inputString);
-    displayString(stringResult);
+    // Get the values from the left and right inputs
+    let originalInputString = document.getElementById('originalInputString').value;
+
+    let checkedResults = checkForPalindrome(originalInputString);
+
+    displayResults(checkedResults);
 }
 
-function reverseString(inputString){
-    
-    let result= '';
 
-    for (let i = inputString.length-1;i >= 0;i--) {
+function checkForPalindrome(originalInputString){
+
+    let isValidPalindrome = '';
+    let reversedString = '';
+
+    // normalize string
+    // for each character check if its either WS or SC
+
+    // make a for loop that reverses the string
+    for (let i = originalInputString.length-1;i >= 0;i--) {
         
-        result += inputString[i];
-        
+        reversedString += originalInputString[i];
+
     }
 
-    return result;
+    // Validate the results against the normalized string
+    if (originalInputString == reversedString) {
+        
+        isValidPalindrome = true;         
+
+    } else {
+        isValidPalindrome = false;                
+    }
+
+    return isValidPalindrome;
 }
 
-function displayString(stringResult) {
+
+
+function displayResults(checkedResults) {
+
     
-    document.getElementById('alert').classList.remove('invisible');
-    document.getElementById('msg').innerHTML =`your string as been reversed to <b>${stringResult}</b>`;
+    if (checkForPalindrome == true) {
+        document.getElementById('alert').classList.remove('invisible');
+        document.getElementById('msg').innerHTML = `your word is a Palindrome <b></b>`;
+    } else {
+        document.getElementById('alert').classList.remove('invisible');
+        document.getElementById('msg').innerHTML = `your word is not a Palindrome <b></b>`;
+    }
  
 }
