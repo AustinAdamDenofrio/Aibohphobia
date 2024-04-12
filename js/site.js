@@ -26,7 +26,7 @@ function checkForPalindrome(originalInputString){
 
     // Validate the results against the normalized string
     if (originalInputString == reversedString) {
-        
+
         isValidPalindrome = true;         
 
     } else {
@@ -41,12 +41,12 @@ function checkForPalindrome(originalInputString){
 function displayResults(checkedResults) {
 
     
-    if (checkForPalindrome == true) {
+    if (checkedResults == true) {
         document.getElementById('alert').classList.remove('invisible');
-        document.getElementById('msg').innerHTML = `your word is a Palindrome <b></b>`;
+        document.getElementById('msg').innerHTML = `your word is a Palindrome`;
     } else {
         document.getElementById('alert').classList.remove('invisible');
-        document.getElementById('msg').innerHTML = `your word is not a Palindrome <b></b>`;
+        document.getElementById('msg').innerHTML = `your word is not a Palindrome`;
     }
  
 }
