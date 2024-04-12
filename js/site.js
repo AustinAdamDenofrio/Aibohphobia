@@ -1,52 +1,62 @@
+
+// User will use an imput to call this function and the input value will be check to see if the input 
+// is a palindrome, then inform the user of the findings.
 function getValues() {
 
-    // Get the values from the left and right inputs
+    // Get the values from HTML and stage it for use by other functions
     let originalInputString = document.getElementById('originalInputString').value;
+    
+    // create a var and lowercase and replace all chars that are ^... with nothing. removing all char except the ones i expect
+    normalizedString = originalInputString.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
 
-    let checkedResults = checkForPalindrome(originalInputString);
+    // pass the normalized string to be reversed and validated if its a palindrome
+    let checkedResults = checkForPalindrome(normalizedString);
 
-    displayResults(checkedResults);
+    // Pass bool results for is a palindrome checker and the un-normalized input from html
+    displayResults(checkedResults, originalInputString);
 }
 
+// is the value passed in a palindrome?
+// Step 1: Reverse the string
+// Step 2: Compare reversed string against original to validate they match
+// Step 3: Check for error cases
+// Step 4: Return if the value was a palindrome or not.
 
-function checkForPalindrome(originalInputString){
-
-    let isValidPalindrome = '';
+function checkForPalindrome(normalizedString){
+    // var for storing the input string value in reverse
     let reversedString = '';
 
-    // normalize string
-    // for each character check if its either WS or SC
+    // var for storing true/false for if the input is a palindrome 
+    let isValidPalindrome = '';
+
 
     // make a for loop that reverses the string
-    for (let i = originalInputString.length-1;i >= 0;i--) {
-        
-        reversedString += originalInputString[i];
-
+    for (let i = normalizedString.length-1;i >= 0;i--) {
+        reversedString += normalizedString[i];
     }
 
-    // Validate the results against the normalized string
-    if (originalInputString == reversedString) {
-
+    // Validate the results against the normalized string and check against empty strings
+    if (normalizedString == reversedString && normalizedString != "") {
         isValidPalindrome = true;         
-
     } else {
         isValidPalindrome = false;                
     }
+
 
     return isValidPalindrome;
 }
 
 
 
-function displayResults(checkedResults) {
-
+function displayResults(checkedResults, originalInputString) {
     
     if (checkedResults == true) {
         document.getElementById('alert').classList.remove('invisible');
-        document.getElementById('msg').innerHTML = `your word is a Palindrome`;
+        document.getElementById('msg').innerHTML = `"${originalInputString}" is a Palindrome`;
     } else {
         document.getElementById('alert').classList.remove('invisible');
-        document.getElementById('msg').innerHTML = `your word is not a Palindrome`;
+        document.getElementById('msg').innerHTML = `"${originalInputString}" is not a Palindrome`;
     }
  
 }
+
