@@ -7,7 +7,7 @@ function getValues() {
     let originalInputString = document.getElementById('originalInputString').value;
     
     // create a var and lowercase and replace all chars that are ^... with nothing. removing all char except the ones i expect
-    normalizedString = originalInputString.toLowerCase().replace(/[^a-z0-9]/g, '');
+    normalizedString = originalInputString.toLowerCase().replace(/[^a-z0-9]/gi, '');
 // change me check normalized string for empty text 
 
     // pass the normalized string to be reversed and validated if its a palindrome
