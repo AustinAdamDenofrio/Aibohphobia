@@ -139,14 +139,21 @@
             </div>
             <!-- The Code's Explination -->
             <div class="col-12 col-lg-4">
-                <p>The code is structured into 3 functions all initiated by the entry point:</p>
-                <h5><code>function getValues</code></h5>
+                <h4>Code Structure</h4>
+                <p>
+                    The code is structured into 3 functions that store the input from the user and
+                    run some code to determine if their input has the same value forwards as backwards.
+                </p>
+                <h5>The entry point:</h5>
+                <h5 class="pb-3"><code>function getValues()</code></h5>
+                <h5>Function 1:</h5>
                 <p>
                     The <code>getValues</code> function takes the 
                     value from the input, parses the data properly for use and uses that value 
                     to go through a series of functions to check if the value is or is not a 
                     palindrome.
                 </p>
+                <h5>Function 2:</h5>
                 <p>
                     The <code>checkForPalindrome</code> function takes the normalized value from
                     <code>getValues</code> and creates a copy of that string, reverses that string,
@@ -154,6 +161,7 @@
                     is a palindrome. Once we have discovered if the input is the a palindrome that 
                     information is returned back to <code>getValues</code>.
                 </p>
+                <h5>Function 3:</h5>
                 <p>
                     The <code>displayResults</code> function takes all the data we collect and uses
                     that data to create a message that will display seemlessly to the user. That 
