@@ -7,7 +7,8 @@ function getValues() {
     let originalInputString = document.getElementById('originalInputString').value;
     
     // create a var and lowercase and replace all chars that are ^... with nothing. removing all char except the ones i expect
-    normalizedString = originalInputString.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+    normalizedString = originalInputString.toLowerCase().replace(/[^a-z0-9]/g, '');
+// change me check normalized string for empty text 
 
     // pass the normalized string to be reversed and validated if its a palindrome
     let checkedResults = checkForPalindrome(normalizedString);
@@ -22,12 +23,13 @@ function getValues() {
 // Step 3: Check for error cases
 // Step 4: Return if the value was a palindrome or not.
 
+
 function checkForPalindrome(normalizedString){
     // var for storing the input string value in reverse
     let reversedString = '';
 
     // var for storing true/false for if the input is a palindrome 
-    let isValidPalindrome = '';
+    let isValidPalindrome = false;
 
 
     // make a for loop that reverses the string
@@ -35,6 +37,8 @@ function checkForPalindrome(normalizedString){
         reversedString += normalizedString[i];
     }
 
+
+// remove normalize parameter
     // Validate the results against the normalized string and check against empty strings
     if (normalizedString == reversedString && normalizedString != "") {
         isValidPalindrome = true;         
@@ -50,6 +54,7 @@ function checkForPalindrome(normalizedString){
 
 function displayResults(checkedResults, originalInputString) {
     
+    // display message based on true/false is a palindrome
     if (checkedResults == true) {
 
         swal.fire({
